@@ -1,0 +1,35 @@
+<% include layout/header %>
+<h1>Inventario</h1>
+<% if (message) { %>
+  <div class="alert alert-<%= message.type %>"><%= message.content %></div>
+<% } %>
+<table>
+  <thead>
+    <tr>
+      <th>Código</th>
+      <th>Nombre</th>
+      <th>Foto</th>
+      <th>Descripción</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% items.forEach(item => { %>
+      <tr>
+        <td><%= item.code %></td>
+        <td><%= item.name %></td>
+        <td><img src="/<%= item.photo %>" alt="<%= item.name %>"></td>
+        <td><%= item.description %></td>
+        <td><%= item.quantity %></td>
+        <td><%= item.price %></td>
+        <td>
+          <a href="/edit/<%= item._id %>">Editar</a>
+          <a href="/delete/<%= item._id %>">Eliminar</a>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+<% include layout/footer %>
